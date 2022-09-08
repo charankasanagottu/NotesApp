@@ -6,6 +6,7 @@ import static android.os.Trace.isEnabled;
 
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.action.ViewActions.typeTextIntoFocusedView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -53,8 +54,12 @@ public class MainActivityTest {
             profile.testbuttonsProfile();
             Espresso.pressBackUnconditionally();
         }
-        Espresso.onView(withId(R.id.Account)).perform(typeText(name));
-        Espresso.onView(withId(R.id.DisplayBtn)).check(matches(withText(name)));
+        if(ViewMatchers.withId(R.id.imageBtn).matches(isEnabled())){
+            weather.checkAllButtonsWeather();
+            Espresso.pressBackUnconditionally();
+        }
+
+
         checkall();
 
     }
